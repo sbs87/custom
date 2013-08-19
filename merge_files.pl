@@ -3,18 +3,28 @@
 use strict;
 use Utilities;
 
-my %params;
+my %params_f1;
 my $file1_name="test_file";
+
+my %params_f2;
+my $file2_name="test_file_2";
+
 my @indexes_file1=(0,1);
-my @skipped=(5);
+my @indexes_file2=(0,1);
+my $delimiter="\t";
+my @skipped=(1);
 
-$params{"fn"}=$file1_name;
-$params{"indx"}=\@indexes_file1;
-$params{"delim"}="\t";
-$params{"skipped"}=\@skipped;
-my $params_ref=\%params;
+$params_f1{"fn"}=$file1_name;
+$params_f1{"indx"}=\@indexes_file1;
+$params_f1{"delim"}=$delimiter;
+$params_f1{"skipped"}=\@skipped;
 
-my %file_meta_ref=Utilities::read_file(\%params);
-#my %file2=Utilities::read_file($file2_name,@indexes_file2);
+$params_f2{"fn"}=$file2_name;
+$params_f2{"indx"}=\@indexes_file2;
+$params_f2{"delim"}=$delimiter;
+$params_f2{"skipped"}=\@skipped;
 
-Utilities::find_ui(${file_meta_ref}{"file"});
+my %file_1=Utilities::read_file(\%params_f1);
+my %file_2=Utilities::read_file(\%params_f2);
+
+Utilities::find_ui(\%file_1,\%file_2);

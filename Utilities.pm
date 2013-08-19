@@ -24,8 +24,8 @@ my $delim=$$params{"delim"};
 my $skipped=$$params{"skipped"};
 
 my %file_hash;
-
 my %duplicate_lines;
+my $max_cols=0;
 
 my $line_number=1;
 open(F,$file_name);
@@ -34,6 +34,10 @@ while(<F>){
     if(!in($line_number,@$skipped)){
     chomp;
     my @line=split($delim);
+    my $length=@line;
+    if($length>$max_cols){
+    $max_cols=$length;
+    }
 
     my @keys;
     for my $val (@$indexes){
@@ -53,18 +57,30 @@ while(<F>){
 my %return_val;
 $return_val{"file"}=\%file_hash;
 $return_val{"duplicates"}=\%duplicate_lines;
+$return_val{"max_cols"}=\$max_cols;
+
 return %return_val;
+
 }
 
 sub find_ui{
-my $file1=$_[0];
-print $$file1{"Tim_3"};
+my %meta_file1=%{$_[0]};
+my %file1=%{$meta_file1{"file"}};
+my %meta_file2=%{$_[1]};
+my %file2=%{$meta_file2{"file"}};
+my $max_cols_file2=${$meta_file2{"max_cols"}};
 
-foreach my $val (sort %$file1){
-print "$val\n";
+foreach my $id_file2 (keys %file2){
+	foreach my $id_file1 (keys %file1){
+		if($id_file1 eq $id_file2){
+			print $file1{$id_file1}."\t".$file2{$id_file2}."\n";
+		}
+		else{
+			print $file1{$id_file1}."\t"x$max_cols_file2;
+			print "\n";
+		}
+	}
 }
-
-
 }
 
 1;
