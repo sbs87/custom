@@ -4,10 +4,12 @@ use strict;
 use Utilities;
 
 my %params_f1;
-my $file1_name="test_file";
+my $file1_name=$ARGV[0];
+#my $file1_name="test_file";
 
 my %params_f2;
-my $file2_name="test_file_2";
+#my $file2_name="test_file_2";
+my $file2_name=$ARGV[1];
 
 my @indexes_file1=(0,1);
 my @indexes_file2=(0,1);

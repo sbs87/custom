@@ -70,17 +70,18 @@ my %meta_file2=%{$_[1]};
 my %file2=%{$meta_file2{"file"}};
 my $max_cols_file2=${$meta_file2{"max_cols"}};
 
-foreach my $id_file2 (keys %file2){
-	foreach my $id_file1 (keys %file1){
-		if($id_file1 eq $id_file2){
-			print $file1{$id_file1}."\t".$file2{$id_file2}."\n";
-		}
-		else{
-			print $file1{$id_file1}."\t"x$max_cols_file2;
-			print "\n";
-		}
+foreach my $id_file1 (keys %file1){
+	if (exists($file2{$id_file1})){
+		print $file1{$id_file1}."\t".$file2{$id_file1}."\n";
 	}
+	else{
+		print $file1{$id_file1}."\t"x$max_cols_file2;
+		print "\n";
+	}
+	}
+print %{$meta_file1{"duplicates"}};
+
 }
-}
+
 
 1;
