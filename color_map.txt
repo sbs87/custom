@@ -1,0 +1,12 @@
+#FF3300	6	Apis_mellifera
+#FF9900	1	Nasonia_vitripennis
+#FF66FF	2	NA
+#99CCFF	3	Anopheles_gambiae
+#0066FF	4	NA
+#66FF33	5	Plutella_xylostella
+#339933	7	NA
+#6600CC	8	NA
+#666633	9	NA
+#FFFF00	10	NA
+#000000	11	NA
+#999999	12	NA
