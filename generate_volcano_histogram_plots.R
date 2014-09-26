@@ -33,7 +33,7 @@ for(comparison_name in comparisons){
   plot(histogram)
   dev.off()
 
-  postscript(file=paste(figure_location,comparison_name,".volcano.ps",sep=""))
+  postscript(file=paste(figure_location,comparison_name,".Philippe.volcano.ps",sep=""))
   volcano<-ggplot(diff.exp)+geom_point(aes(x=log2.fold_change.,y=-log(diff.exp$q_value,base=10)))+
     theme_bw()+ggtitle(paste("Volcano Plot",file_name))+xlab("Log2 Fold Change")+ylab("-log10(Adj p-value")+
     geom_hline(yintercept=-log(.05,base=10),color='red')+geom_vline(xintercept=c(-1.5,1.5),color='red')
